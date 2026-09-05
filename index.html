@@ -18,17 +18,24 @@ main{padding:55px 0 70px}section{margin:0 0 58px}.eyebrow{color:var(--cyan);font
 .validation{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.check{padding:17px;border-radius:14px;background:rgba(64,223,145,.06);border:1px solid rgba(64,223,145,.22)}.check strong{display:block;color:#8ff3bd;font-size:15px}.check span{color:#9db3bc;font-size:13px}.tech{margin-top:15px;padding:18px 20px;border-left:3px solid var(--cyan);background:#09171d;border-radius:0 12px 12px 0;color:#a7bdc5;font-size:14px}
 .community{text-align:center;padding:42px 24px;border-radius:22px;border:1px solid rgba(25,211,229,.23);background:radial-gradient(circle at 50% 0%,rgba(25,211,229,.11),transparent 50%),var(--panel)}.community h2{margin-bottom:12px}.community p{max-width:760px;margin:0 auto 22px;color:#adbec5}.smallnote{font-size:12px;color:#6f8993;margin-top:14px}
 footer{padding:24px 0 38px;border-top:1px solid rgba(255,255,255,.06);color:#78929c;font-size:13px}footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.stats,.validation{grid-template-columns:1fr 1fr}.wide{grid-template-columns:1fr}}@media(max-width:620px){header{padding-top:45px}.grid,.stats,.validation,.before-after{grid-template-columns:1fr}h1{letter-spacing:-1.7px}}
+.language-switch{position:fixed;top:18px;right:18px;z-index:1000;display:flex;gap:4px;padding:5px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(7,17,22,.88);box-shadow:0 8px 26px rgba(0,0,0,.28);backdrop-filter:blur(12px)}.language-switch button{appearance:none;border:0;border-radius:8px;padding:8px 12px;color:var(--muted);background:transparent;font:800 13px/1 Inter,Segoe UI,Arial,sans-serif;letter-spacing:.5px;cursor:pointer;transition:.2s}.language-switch button:hover{color:var(--text);background:rgba(255,255,255,.06)}.language-switch button.active{color:#071116;background:linear-gradient(135deg,var(--cyan),#8be7f0)}.language-switch button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.stats,.validation{grid-template-columns:1fr 1fr}.wide{grid-template-columns:1fr}}@media(max-width:620px){header{padding-top:72px}.language-switch{top:10px;right:10px}.grid,.stats,.validation,.before-after{grid-template-columns:1fr}h1{letter-spacing:-1.7px}}
 </style>
 </head>
 <body>
+<nav class="language-switch" aria-label="Idioma / Language">
+<button type="button" data-language-button="pt" class="active" aria-pressed="true">PT</button>
+<button type="button" data-language-button="en" aria-pressed="false">EN</button>
+</nav>
+
+<div data-language-panel="pt">
 <header>
 <div class="wrap">
-<div class="badge">NEXAMAP EDITOR • ATUALIZAÇÃO DISPONÍVEL NA MAIN OFICIAL</div>
+<div class="badge">NEXAMAP EDITOR • GRANDE ATUALIZAÇÃO • PR #31</div>
 <h1>O NexaMap deu um <span>salto enorme.</span></h1>
-<p class="lead">Depois de muitas mudanças, testes e uma auditoria completa, esta grande atualização foi aprovada para a main oficial do NexaMap. Agora vocês podem baixar a versão oficial diretamente do repositório e testar em projetos reais. Se alguma coisa não funcionar, aparecer bug, crash, erro visual, problema de compatibilidade ou comportamento estranho, me avisem para eu corrigir e continuar melhorando o editor.</p>
+<p class="lead">Depois de muitas mudanças, testes e uma auditoria completa, esta grande atualização está em validação na PR #31. Acompanhe o desenvolvimento, teste em projetos reais e conte para nós se encontrar bug, crash, erro visual, incompatibilidade ou comportamento estranho.</p>
 <div class="hero-actions">
-<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Baixar / acessar a versão oficial</a>
+<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor/pull/31" target="_blank" rel="noopener">Ver e testar a PR #31</a>
 <a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Abrir repositório</a>
 </div>
 <div class="stats">
@@ -126,11 +133,11 @@ footer{padding:24px 0 38px;border-top:1px solid rgba(255,255,255,.06);color:#789
 <div class="eyebrow">Próximo passo</div>
 <div class="wide">
 <div class="feature">
-<h3>Atualização aprovada na main oficial</h3>
+<h3>Atualização em validação para a main oficial</h3>
 <ul>
-<li>A atualização já passou pelos testes locais principais e foi aprovada para a main oficial.</li>
-<li>A comunidade agora pode baixar e usar diretamente a versão oficial do NexaMap.</li>
-<li>Continuarei corrigindo regressões e bugs encontrados pela comunidade na versão oficial.</li>
+<li>A atualização passou pelos principais testes locais e está aberta para review na PR #31.</li>
+<li>A comunidade pode baixar a branch, testar mapas reais e ajudar na validação.</li>
+<li>Continuarei corrigindo regressões e bugs encontrados antes e depois da integração.</li>
 <li>Relatos com passos para reproduzir, print, vídeo e log têm prioridade porque ajudam a localizar a causa real.</li>
 </ul>
 </div>
@@ -144,14 +151,198 @@ footer{padding:24px 0 38px;border-top:1px solid rgba(255,255,255,.06);color:#789
 <section>
 <div class="community">
 <div class="eyebrow">Comunidade</div>
-<h2>A atualização já está na main oficial — e preciso da ajuda de vocês.</h2>
-<p>A atualização já foi aprovada e está na main oficial do NexaMap. Eu testei bastante e os testes passaram, mas nenhum teste consegue cobrir todos os mapas, clientes, servidores e formas de uso da comunidade. Por isso quero que vocês baixem a versão oficial, usem de verdade e tentem encontrar problemas. Se algo não abrir, não funcionar como esperado, der crash, travar, mostrar item errado, falhar no multiplayer, apresentar problema de ClientID/ServerID, tooltip, minimap, playtest, palette ou qualquer outro comportamento estranho, me mandem print, vídeo, log e expliquem o que fizeram para acontecer. Isso ajuda muito a reproduzir e corrigir rápido. Quero continuar melhorando o NexaMap junto com vocês.</p>
-<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Baixar a versão oficial e ajudar testando</a>
-<div class="smallnote">A atualização da antiga PR #31 agora faz parte da main oficial do NexaMap.</div>
+<h2>A PR #31 precisa da ajuda de vocês.</h2>
+<p>Os testes passaram, mas nenhum teste consegue cobrir todos os mapas, clientes, servidores e formas de uso da comunidade. Baixem a branch, usem em projetos reais e tentem encontrar problemas. Se algo não abrir, der crash, travar, mostrar item errado ou falhar no multiplayer, ClientID/ServerID, tooltip, minimap, playtest ou palettes, enviem print, vídeo, log e os passos para reproduzir. Vocês também podem propor melhorias abrindo uma pull request no NexaMap Editor original.</p>
+<div class="hero-actions" style="justify-content:center">
+<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor/pull/31" target="_blank" rel="noopener">Abrir a PR #31 e ajudar testando</a>
+<a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor/issues" target="_blank" rel="noopener">Enviar feedback / abrir issue</a>
+<a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor/pulls" target="_blank" rel="noopener">Contribuir com uma pull request</a>
+</div>
+<div class="smallnote">Ajude a validar a atualização antes da integração à main oficial.</div>
 </div>
 </section>
 
 </main>
 <footer><div class="wrap row"><span>NexaMap Editor • Open-source OpenTibia Map Editor</span><span>Desenvolvido por Mateuzkl, Skyyzyy e com participação de SoyFabian • Atualização da comunidade — 2026</span></div></footer>
+</div>
+
+<div data-language-panel="en" hidden>
+<header>
+<div class="wrap">
+<div class="badge">NEXAMAP EDITOR • MAJOR UPDATE • PR #31</div>
+<h1>NexaMap just took a <span>huge leap.</span></h1>
+<p class="lead">After extensive development, testing, and a full engineering audit, this major update is being validated in PR #31. Follow its development, test it with real projects, and tell us if you find a bug, crash, visual issue, incompatibility, or unexpected behavior.</p>
+<div class="hero-actions">
+<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor/pull/31" target="_blank" rel="noopener">View and test PR #31</a>
+<a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Open repository</a>
+</div>
+<div class="stats">
+<div class="stat"><strong>50</strong><span>commits in this PR</span></div>
+<div class="stat"><strong>525</strong><span>files in the current diff</span></div>
+<div class="stat"><strong>35/35</strong><span>local tests passed</span></div>
+<div class="stat"><strong>C++20</strong><span>wxWidgets + OpenGL</span></div>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+
+<section>
+<div class="eyebrow">What changed</div>
+<h2>A more modern editor for OpenTibia projects</h2>
+<p class="sub">The goal was to improve everyday workflows while preserving compatibility across the NexaMap ecosystem: Classic/TFS, ClientID, Canary/Crystal, and different server resources.</p>
+
+<div class="grid">
+<article class="card"><div class="icon">◫</div><h3>New Workspace</h3><p>Client and server resources now belong to a persistent workspace. The editor automatically discovers maps, items.otb, items.xml, monsters, NPCs, and appearances.</p></article>
+<article class="card"><div class="icon">＋</div><h3>Independent tabs</h3><p>Each map can keep its own resource session. You can work with different clients and servers without reloading or disrupting tabs that are already open.</p></article>
+<article class="card"><div class="icon">⇄</div><h3>Cross-Client Copy &amp; Paste</h3><p>Copy areas between different clients. NexaMap compares graphics, metadata, and item structure, then shows matched, remapped, and missing resources before pasting.</p></article>
+<article class="card"><div class="icon">⌘</div><h3>Command Palette</h3><p>Quick command search gives direct access to tools without hunting through menus, making frequent editing actions faster.</p></article>
+<article class="card"><div class="icon">★</div><h3>Favorites 2.0</h3><p>Persistent favorites are separated by resource session and include categories and previews, making brushes and items easier to find.</p></article>
+<article class="card"><div class="icon">⌖</div><h3>New Minimap</h3><p>A dockable minimap improves navigation with viewport controls and support for Action ID and Unique ID markers.</p></article>
+<article class="card"><div class="icon">✓</div><h3>Map Diagnostics</h3><p>A map health scanner finds problems and navigates directly to occurrences with filters, progress reporting, and safe cancellation.</p></article>
+<article class="card"><div class="icon">▶</div><h3>Playtest Mode</h3><p>The old in-game preview evolved into a richer local test mode with movement, HUD, lighting, interaction, and atmospheric effects.</p></article>
+<article class="card"><div class="icon">⚡</div><h3>Renderer and caches</h3><p>4×4 chunk revisions, CPU geometry caching, persistent GPU ground caching, and atlas tracking were integrated while preserving the current renderer.</p></article>
+<article class="card"><div class="icon">☁</div><h3>Real-time multiplayer</h3><p>Host and Join sessions include snapshots, transactions, revisions, locks, permissions, chat, cursors, pings, approvals, reconnection, and resynchronization.</p></article>
+<article class="card"><div class="icon">▣</div><h3>Tooltips and containers</h3><p>Container previews and Item ID, Action ID, and Unique ID information were improved. Overlays remain readable at distant zoom levels.</p></article>
+<article class="card"><div class="icon">◉</div><h3>Smarter Collections</h3><p>The Collections Palette now follows the active resources and stays hidden when no valid collections are available.</p></article>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Highlight</div>
+<div class="wide">
+<div class="feature">
+<h3>Multiplayer designed for real editing</h3>
+<ul>
+<li>An authoritative host tracks revisions for every transaction.</li>
+<li>Edit conflicts are validated instead of relying only on arrival order.</li>
+<li>Region locks and per-participant permissions protect shared work.</li>
+<li>An initial snapshot and journal support reconnection and resynchronization.</li>
+<li>HMAC challenge authentication means the password is never sent as plain text.</li>
+<li>The interface includes Host/Join, participants, chat, pings, and approvals.</li>
+<li>Default dedicated multiplayer port: <strong>49171</strong>.</li>
+</ul>
+</div>
+<div class="callout">
+<div class="big">Mapping together is no longer just an idea.</div>
+<p>The goal is to let two or more people work on the same map with stronger safeguards than simply sending tiles over the network. NexaMap validates the session, revision, locks, content, and permissions before applying changes.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Workflow</div>
+<h2>Less friction when working across multiple projects</h2>
+<div class="before-after">
+<div class="ba before"><h3>Before</h3><ul><li>Data was duplicated across many versions.</li><li>Changing resources could require a full reload.</li><li>Copying between different clients was risky.</li><li>Important tools were scattered across menus.</li><li>Collections could appear as an empty panel.</li></ul></div>
+<div class="ba after"><h3>Now</h3><ul><li><code>data/editor</code> centralizes shared materials.</li><li>Every tab can use an independent session.</li><li>Cross-client paste includes analysis and confirmation.</li><li>Command Palette and Favorites speed up access.</li><li>Palettes and resources follow the active session.</li></ul></div>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Audit and stability</div>
+<h2>There was also major cleanup under the hood</h2>
+<p class="sub">After the features were built, the branch received a focused audit of ownership, callbacks, threads, sockets, memory, and OpenGL. The goal was to fix proven problems without refactoring only for appearance.</p>
+<div class="grid">
+<article class="card"><div class="icon">🛡</div><h3>Safer lifetimes</h3><p>Manual MapTab reference counting was replaced with explicit ownership using shared and unique pointers where they accurately represent the design.</p></article>
+<article class="card"><div class="icon">⏱</div><h3>No detached deletion</h3><p>Heavy Editor disposal now uses a controlled, joinable queue instead of an untracked detached thread.</p></article>
+<article class="card"><div class="icon">◇</div><h3>Hardened callbacks</h3><p>Deferred callbacks that could outlive their windows now use weak references and validate current state before accessing objects.</p></article>
+<article class="card"><div class="icon">▧</div><h3>OpenGL teardown</h3><p>Frame and GL resource shutdown was fixed to prevent duplicate end-frame work and keep the correct context current during destruction.</p></article>
+<article class="card"><div class="icon">↯</div><h3>Clipboard releases sessions</h3><p>The cross-client clipboard no longer keeps an entire old session alive only because copied content still exists.</p></article>
+<article class="card"><div class="icon">⌫</div><h3>Duplicate code removed</h3><p>Redundant guards and superseded manual owners were removed without deleting APIs simply because they appeared unused.</p></article>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Validation</div>
+<h2>Validation went far beyond “it builds here”</h2>
+<p class="sub">The current branch went through a broader local validation suite before PR #31 was opened.</p>
+<div class="validation">
+<div class="check"><strong>35 / 35 tests</strong><span>final suite passed</span></div>
+<div class="check"><strong>Release x64</strong><span>MSVC v145 / VS 2026</span></div>
+<div class="check"><strong>AddressSanitizer</strong><span>lifecycle and multiplayer exercised</span></div>
+<div class="check"><strong>OpenGL 4.6</strong><span>cache ON/OFF with equivalent pixels</span></div>
+</div>
+<div class="tech">Validation also covered renderer teardown, repeated Playtest cycles, localhost Host/Join, reconnection, interrupted snapshots, Collections, Favorites, Diagnostics, chunk revisions, and caches. The current HEAD passed the GitHub style workflow, while the PR's Windows Build matrix validates the supported architectures.</div>
+</section>
+
+<section>
+<div class="eyebrow">Next step</div>
+<div class="wide">
+<div class="feature">
+<h3>Validating the update for the official main branch</h3>
+<ul>
+<li>The update passed its main local tests and is open for review in PR #31.</li>
+<li>The community can download the branch, test real maps, and help validate it.</li>
+<li>Regressions and community-reported bugs will continue to be fixed before and after integration.</li>
+<li>Reports with reproduction steps, screenshots, video, and logs receive priority because they help identify the actual cause.</li>
+</ul>
+</div>
+<div class="callout">
+<div class="big">Do not be afraid to find a problem.</div>
+<p>Finding a bug is useful feedback for the project. We especially want to know what fails, what crashes, what behaves differently than expected, and which client, server, or map was involved.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="community">
+<div class="eyebrow">Community</div>
+<h2>PR #31 needs your help.</h2>
+<p>The tests passed, but no automated suite can cover every map, client, server, and community workflow. Download the branch, use it with real projects, and try to find problems. If something fails to open, crashes, freezes, displays the wrong item, or breaks multiplayer, ClientID/ServerID, tooltips, minimap, playtest, or palettes, send screenshots, video, logs, and clear reproduction steps. You can also propose improvements by opening a pull request in the original NexaMap Editor repository.</p>
+<div class="hero-actions" style="justify-content:center">
+<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor/pull/31" target="_blank" rel="noopener">Open PR #31 and help test</a>
+<a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor/issues" target="_blank" rel="noopener">Send feedback / open an issue</a>
+<a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor/pulls" target="_blank" rel="noopener">Contribute a pull request</a>
+</div>
+<div class="smallnote">Help validate the update before it is integrated into the official main branch.</div>
+</div>
+</section>
+
+</main>
+<footer><div class="wrap row"><span>NexaMap Editor • Open-source OpenTibia Map Editor</span><span>Developed by Mateuzkl and Skyyzyy, with contributions from SoyFabian • Community update — 2026</span></div></footer>
+</div>
+
+<script>
+(() => {
+  const panels = [...document.querySelectorAll('[data-language-panel]')];
+  const buttons = [...document.querySelectorAll('[data-language-button]')];
+  const titles = {
+    pt: 'NexaMap Editor — Grande Atualização | PR #31',
+    en: 'NexaMap Editor — Major Update | PR #31'
+  };
+
+  const setLanguage = (language) => {
+    const selected = language === 'en' ? 'en' : 'pt';
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.languagePanel !== selected;
+    });
+    buttons.forEach((button) => {
+      const active = button.dataset.languageButton === selected;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    document.documentElement.lang = selected === 'en' ? 'en' : 'pt-BR';
+    document.title = titles[selected];
+    try {
+      localStorage.setItem('nexamap-showcase-language', selected);
+    } catch (_) {
+      // Language switching still works when storage is unavailable.
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => setLanguage(button.dataset.languageButton));
+  });
+
+  let savedLanguage = 'pt';
+  try {
+    savedLanguage = localStorage.getItem('nexamap-showcase-language') || 'pt';
+  } catch (_) {
+    // Keep Portuguese as the default when storage is unavailable.
+  }
+  setLanguage(savedLanguage);
+})();
+</script>
 </body>
 </html>

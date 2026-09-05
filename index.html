@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NexaMap Editor — Grande Atualização | PR #31</title>
+<style>
+:root{--bg:#071116;--panel:#0c1a21;--panel2:#10242c;--line:#1d3b46;--text:#e8f4f7;--muted:#93aeb8;--cyan:#19d3e5;--purple:#7c4dff;--green:#40df91;--shadow:0 18px 55px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 15% 0%,rgba(25,211,229,.10),transparent 28%),radial-gradient(circle at 85% 8%,rgba(124,77,255,.14),transparent 30%),var(--bg);line-height:1.6}a{color:inherit}.wrap{width:min(1160px,calc(100% - 32px));margin:auto}
+header{padding:70px 0 48px;border-bottom:1px solid rgba(255,255,255,.06)}.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border:1px solid rgba(25,211,229,.28);background:rgba(25,211,229,.07);border-radius:999px;color:#aef6ff;font-size:13px;font-weight:700;letter-spacing:.35px}
+h1{margin:18px 0 12px;font-size:clamp(40px,7vw,78px);line-height:.98;letter-spacing:-2.8px}h1 span{background:linear-gradient(90deg,var(--cyan),#9f8cff);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:850px;margin:0;color:#bfd0d6;font-size:clamp(17px,2vw,22px)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.btn{text-decoration:none;font-weight:800;padding:12px 18px;border-radius:11px;border:1px solid var(--line);background:var(--panel);transition:.2s}.btn.primary{background:linear-gradient(135deg,var(--purple),#5d36d8);border-color:transparent}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}.stat{padding:18px;background:rgba(12,26,33,.78);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat strong{display:block;font-size:27px;color:#fff;line-height:1.1}.stat span{font-size:13px;color:var(--muted)}
+main{padding:55px 0 70px}section{margin:0 0 58px}.eyebrow{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:7px}h2{font-size:clamp(27px,4vw,40px);margin:0 0 10px;letter-spacing:-1px}.sub{max-width:800px;color:var(--muted);margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:22px;border-radius:17px;background:linear-gradient(180deg,rgba(16,36,44,.96),rgba(10,25,31,.96));border:1px solid var(--line);box-shadow:0 10px 28px rgba(0,0,0,.18)}.icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;margin-bottom:14px;font-size:21px;background:linear-gradient(135deg,rgba(25,211,229,.16),rgba(124,77,255,.18));border:1px solid rgba(121,157,171,.2)}.card h3{font-size:18px;margin:0 0 7px}.card p{margin:0;color:#9eb5be;font-size:14px}
+.wide{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.feature{padding:28px;border-radius:18px;background:var(--panel);border:1px solid var(--line)}.feature h3{margin:0 0 13px;font-size:23px}.feature ul{margin:0;padding-left:20px;color:#abc0c8}.feature li+li{margin-top:7px}.callout{padding:28px;border-radius:18px;background:linear-gradient(135deg,rgba(124,77,255,.16),rgba(25,211,229,.08)),var(--panel);border:1px solid rgba(124,77,255,.34)}.callout .big{font-size:32px;font-weight:900;line-height:1.05;margin-bottom:12px}.callout p{margin:0;color:#b8cad1}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ba{padding:24px;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.ba h3{margin:0 0 12px}.ba.before h3{color:#ff9c9c}.ba.after h3{color:var(--green)}.ba ul{margin:0;padding-left:18px;color:#a9bec6}
+.validation{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.check{padding:17px;border-radius:14px;background:rgba(64,223,145,.06);border:1px solid rgba(64,223,145,.22)}.check strong{display:block;color:#8ff3bd;font-size:15px}.check span{color:#9db3bc;font-size:13px}.tech{margin-top:15px;padding:18px 20px;border-left:3px solid var(--cyan);background:#09171d;border-radius:0 12px 12px 0;color:#a7bdc5;font-size:14px}
+.community{text-align:center;padding:42px 24px;border-radius:22px;border:1px solid rgba(25,211,229,.23);background:radial-gradient(circle at 50% 0%,rgba(25,211,229,.11),transparent 50%),var(--panel)}.community h2{margin-bottom:12px}.community p{max-width:760px;margin:0 auto 22px;color:#adbec5}.smallnote{font-size:12px;color:#6f8993;margin-top:14px}
+footer{padding:24px 0 38px;border-top:1px solid rgba(255,255,255,.06);color:#78929c;font-size:13px}footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.stats,.validation{grid-template-columns:1fr 1fr}.wide{grid-template-columns:1fr}}@media(max-width:620px){header{padding-top:45px}.grid,.stats,.validation,.before-after{grid-template-columns:1fr}h1{letter-spacing:-1.7px}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="badge">NEXAMAP EDITOR • ATUALIZAÇÃO DISPONÍVEL NA MAIN OFICIAL</div>
+<h1>O NexaMap deu um <span>salto enorme.</span></h1>
+<p class="lead">Depois de muitas mudanças, testes e uma auditoria completa, esta grande atualização foi aprovada para a main oficial do NexaMap. Agora vocês podem baixar a versão oficial diretamente do repositório e testar em projetos reais. Se alguma coisa não funcionar, aparecer bug, crash, erro visual, problema de compatibilidade ou comportamento estranho, me avisem para eu corrigir e continuar melhorando o editor.</p>
+<div class="hero-actions">
+<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Baixar / acessar a versão oficial</a>
+<a class="btn" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Abrir repositório</a>
+</div>
+<div class="stats">
+<div class="stat"><strong>50</strong><span>commits nesta PR</span></div>
+<div class="stat"><strong>525</strong><span>arquivos no diff atual</span></div>
+<div class="stat"><strong>35/35</strong><span>testes locais aprovados</span></div>
+<div class="stat"><strong>C++20</strong><span>wxWidgets + OpenGL</span></div>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+
+<section>
+<div class="eyebrow">O que mudou</div>
+<h2>Um editor mais moderno para projetos OpenTibia</h2>
+<p class="sub">O foco foi melhorar o fluxo de trabalho sem perder compatibilidade com o ecossistema do NexaMap: Classic/TFS, ClientID, Canary/Crystal e diferentes recursos de servidor.</p>
+
+<div class="grid">
+<article class="card"><div class="icon">◫</div><h3>Novo Workspace</h3><p>Cliente e servidor agora fazem parte de um workspace persistente. O editor detecta mapas, items.otb, items.xml, monsters, NPCs e appearances automaticamente.</p></article>
+<article class="card"><div class="icon">＋</div><h3>Abas independentes</h3><p>Cada mapa pode manter sua própria sessão de recursos. É possível trabalhar com clientes/servidores diferentes sem recarregar ou quebrar as abas já abertas.</p></article>
+<article class="card"><div class="icon">⇄</div><h3>Cross-Client Copy & Paste</h3><p>Copie áreas entre clientes diferentes. O NexaMap compara gráficos, metadados e estrutura dos itens, mostra o que foi encontrado, remapeado ou está faltando antes do paste.</p></article>
+<article class="card"><div class="icon">⌘</div><h3>Command Palette</h3><p>Busca rápida de comandos para acessar ferramentas sem ficar procurando em menus. Mais velocidade para quem usa o editor todos os dias.</p></article>
+<article class="card"><div class="icon">★</div><h3>Favorites 2.0</h3><p>Favoritos persistentes e separados por sessão de recursos, com categorias e previews. Brushes e itens ficam mais rápidos de encontrar.</p></article>
+<article class="card"><div class="icon">⌖</div><h3>Novo Minimap</h3><p>Minimap dockável, mais bonito e útil para navegação. Inclui viewport, controles e suporte a markers de ActionID e UniqueID.</p></article>
+<article class="card"><div class="icon">✓</div><h3>Map Diagnostics</h3><p>Scanner de saúde do mapa para localizar problemas e navegar diretamente até as ocorrências, com filtros, progresso e cancelamento seguro.</p></article>
+<article class="card"><div class="icon">▶</div><h3>Playtest Mode</h3><p>O antigo In-game Preview evoluiu para um modo de teste mais completo, com movimento, HUD, iluminação, interação e efeitos atmosféricos.</p></article>
+<article class="card"><div class="icon">⚡</div><h3>Renderer e caches</h3><p>Revisões por chunks 4×4, cache de geometria CPU, cache persistente de ground na GPU e controle de atlas foram integrados preservando o renderer atual.</p></article>
+<article class="card"><div class="icon">☁</div><h3>Multiplayer em tempo real</h3><p>Host/Join com snapshot, transações, revisões, locks, permissões, chat, cursores, pings, aprovações, reconexão e resync.</p></article>
+<article class="card"><div class="icon">▣</div><h3>Tooltips e containers</h3><p>Preview de containers e informações de Item ID, ActionID e UniqueID foram melhorados. Os overlays continuam legíveis mesmo em zoom distante.</p></article>
+<article class="card"><div class="icon">◉</div><h3>Collections inteligente</h3><p>A Collections Palette agora respeita os recursos ativos e deixa de mostrar um painel vazio quando não existem collections válidas.</p></article>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Destaque</div>
+<div class="wide">
+<div class="feature">
+<h3>Multiplayer pensado para edição real</h3>
+<ul>
+<li>Host autoritativo com revisões por transação.</li>
+<li>Conflitos de edição são validados em vez de depender apenas da ordem de chegada.</li>
+<li>Locks de regiões e permissões por participante.</li>
+<li>Snapshot inicial + journal para reconexão e resync.</li>
+<li>Autenticação por desafio HMAC; senha não é enviada em texto puro.</li>
+<li>Interface com Host/Join, participantes, chat, pings e aprovações.</li>
+<li>Porta multiplayer dedicada padrão: <strong>49171</strong>.</li>
+</ul>
+</div>
+<div class="callout">
+<div class="big">Mapear junto deixou de ser só uma ideia.</div>
+<p>O objetivo é permitir que duas ou mais pessoas trabalhem no mesmo mapa com uma base muito mais segura que um simples “enviar tiles pela rede”. O NexaMap valida sessão, revisão, locks, conteúdo e permissões antes de aplicar alterações.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Fluxo de trabalho</div>
+<h2>Menos atrito para quem trabalha com vários projetos</h2>
+<div class="before-after">
+<div class="ba before"><h3>Antes</h3><ul><li>Dados duplicados por várias versões.</li><li>Mudar recursos podia exigir reload completo.</li><li>Copiar entre clientes diferentes era arriscado.</li><li>Ferramentas importantes ficavam espalhadas nos menus.</li><li>Collections podia aparecer vazia.</li></ul></div>
+<div class="ba after"><h3>Agora</h3><ul><li><code>data/editor</code> concentra os materiais compartilhados.</li><li>Cada aba pode ter uma sessão independente.</li><li>Cross-client paste tem análise e confirmação antes de aplicar.</li><li>Command Palette e Favorites aceleram o acesso.</li><li>Palettes e recursos acompanham corretamente a sessão ativa.</li></ul></div>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Auditoria e estabilidade</div>
+<h2>Também teve uma limpeza pesada por baixo do capô</h2>
+<p class="sub">Depois das features, a branch passou por auditoria de ownership, callbacks, threads, sockets, memória e OpenGL. A ideia foi corrigir problemas reais sem fazer refactor só por aparência.</p>
+<div class="grid">
+<article class="card"><div class="icon">🛡</div><h3>Lifetime mais seguro</h3><p>Refcount manual do MapTab foi substituído por ownership explícito com shared/unique pointers onde realmente fazia sentido.</p></article>
+<article class="card"><div class="icon">⏱</div><h3>Sem delete em thread solta</h3><p>O descarte pesado do Editor agora usa uma fila controlada e joinável em vez de uma thread detached sem rastreamento.</p></article>
+<article class="card"><div class="icon">◇</div><h3>Callbacks endurecidos</h3><p>Callbacks diferidos que podiam sobreviver à janela foram protegidos com referências fracas e nova validação antes do acesso.</p></article>
+<article class="card"><div class="icon">▧</div><h3>OpenGL teardown</h3><p>O encerramento de frames e recursos GL foi corrigido para evitar término duplicado e manter o contexto correto durante a destruição.</p></article>
+<article class="card"><div class="icon">↯</div><h3>Clipboard sem prender sessão</h3><p>O clipboard cross-client deixou de manter uma sessão antiga inteira viva apenas porque havia conteúdo copiado.</p></article>
+<article class="card"><div class="icon">⌫</div><h3>Código duplicado removido</h3><p>Guards redundantes e owners manuais substituídos foram removidos sem apagar APIs apenas porque pareciam não utilizadas.</p></article>
+</div>
+</section>
+
+<section>
+<div class="eyebrow">Validação</div>
+<h2>Não ficou só no “compilou aqui”</h2>
+<p class="sub">A branch atual passou por uma bateria maior de validação local antes da abertura da PR #31.</p>
+<div class="validation">
+<div class="check"><strong>35 / 35 testes</strong><span>suíte final aprovada</span></div>
+<div class="check"><strong>Release x64</strong><span>MSVC v145 / VS 2026</span></div>
+<div class="check"><strong>AddressSanitizer</strong><span>lifecycle e multiplayer exercitados</span></div>
+<div class="check"><strong>OpenGL 4.6</strong><span>cache ON/OFF com pixels equivalentes</span></div>
+</div>
+<div class="tech">Também foram testados teardown do renderer, ciclos repetidos de Playtest, Host/Join localhost, reconexão, snapshot interrompido, Collections, Favorites, Diagnostics, chunk revisions e caches. O workflow de estilo do HEAD atual também passou no GitHub; o Build Windows da PR está sendo executado pela matrix do GitHub Actions.</div>
+</section>
+
+
+<section>
+<div class="eyebrow">Próximo passo</div>
+<div class="wide">
+<div class="feature">
+<h3>Atualização aprovada na main oficial</h3>
+<ul>
+<li>A atualização já passou pelos testes locais principais e foi aprovada para a main oficial.</li>
+<li>A comunidade agora pode baixar e usar diretamente a versão oficial do NexaMap.</li>
+<li>Continuarei corrigindo regressões e bugs encontrados pela comunidade na versão oficial.</li>
+<li>Relatos com passos para reproduzir, print, vídeo e log têm prioridade porque ajudam a localizar a causa real.</li>
+</ul>
+</div>
+<div class="callout">
+<div class="big">Testem sem medo de encontrar problema.</div>
+<p>Se vocês encontrarem bug, isso não é algo ruim para o projeto. É exatamente o tipo de feedback que ajuda a deixar a main mais estável. Quero saber principalmente o que não funciona, o que trava, o que ficou diferente do esperado e em qual cliente/servidor/mapa aconteceu.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="community">
+<div class="eyebrow">Comunidade</div>
+<h2>A atualização já está na main oficial — e preciso da ajuda de vocês.</h2>
+<p>A atualização já foi aprovada e está na main oficial do NexaMap. Eu testei bastante e os testes passaram, mas nenhum teste consegue cobrir todos os mapas, clientes, servidores e formas de uso da comunidade. Por isso quero que vocês baixem a versão oficial, usem de verdade e tentem encontrar problemas. Se algo não abrir, não funcionar como esperado, der crash, travar, mostrar item errado, falhar no multiplayer, apresentar problema de ClientID/ServerID, tooltip, minimap, playtest, palette ou qualquer outro comportamento estranho, me mandem print, vídeo, log e expliquem o que fizeram para acontecer. Isso ajuda muito a reproduzir e corrigir rápido. Quero continuar melhorando o NexaMap junto com vocês.</p>
+<a class="btn primary" href="https://github.com/Mateuzkl/NexaMap-Editor" target="_blank" rel="noopener">Baixar a versão oficial e ajudar testando</a>
+<div class="smallnote">A atualização da antiga PR #31 agora faz parte da main oficial do NexaMap.</div>
+</div>
+</section>
+
+</main>
+<footer><div class="wrap row"><span>NexaMap Editor • Open-source OpenTibia Map Editor</span><span>Desenvolvido por Mateuzkl, Skyyzyy e com participação de SoyFabian • Atualização da comunidade — 2026</span></div></footer>
+</body>
+</html>

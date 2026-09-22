@@ -8,9 +8,9 @@ This repository hosts the bilingual public showcase and release history for [Nex
 
 ## [Open the live NexaMap Showcase](https://mateuzkl.github.io/NexaMap-Showcase/)
 
-## Latest update — September 8, 2026
+## Latest update — September 22, 2026
 
-The [Server Content Editors update](https://github.com/Mateuzkl/NexaMap-Editor/pull/34) is merged into the official `main` branch. NexaMap can now discover, inspect, create, and safely edit server content from the active WorkspaceSession.
+The OTC 15.30 and Appearances compatibility update adds native support for NextGen-OTC / CrystalServer 15.30 clients, extended sprite layouts (96x96 / layout 14 and 128x128 / layout 21), and tab-indented OTML files.
 
 ### Native editors
 
@@ -49,6 +49,14 @@ Users can draw affected tiles, choose exactly one center, select a destination l
 The diagnostic console is now optional and disabled by default. It can be enabled in Preferences while `nexamap.log` remains independently available.
 
 ## Changelog
+
+### September 22, 2026 — OTC 15.30 Compatibility & Modern Appearances
+
+- Added native support for NextGen-OTC / CrystalServer 15.30 clients and appearances catalogs.
+- Added support for extended sprite layouts `14` (96×96 / 3×3, capacity 16) and `21` (128×128 / 4×4, capacity 9).
+- Added tab-indented OTML (`.otfi`) parsing and multiline block scalar (`|`, `|-`, `|+`) extraction without truncation.
+- Hardened client version detection against malformed OTML files, returning explicit errors instead of silent fallbacks.
+- Eliminated redundant warning dialogs on direct OTC version selection and removed duplicate warning emissions.
 
 ### September 8, 2026 — Server Content Editors ([PR #34](https://github.com/Mateuzkl/NexaMap-Editor/pull/34))
 
